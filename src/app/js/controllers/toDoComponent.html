@@ -1,0 +1,35 @@
+<div class="component-container" ng-controller="TodoController as todos">
+
+
+  <div class="todo-input">
+    <form ng-submit="todos.addTodo()">
+      <input type="text" ng-model="todos.title" />
+      <button type="submit">Add Todo</button>
+    </form>
+  </div>
+
+ <div class="single-todo">
+   Single Todo :
+   {{todos.singleTodo}}
+ </div>
+
+
+  <ul class="todo__list_container">
+    <li class="todo__list" ng-repeat="todo in todos.list">
+      <div class="todo-row-item">
+        <input ng-model="todo.title" ng-blur="todos.updateTodo(todo)" />
+      </div>
+
+     <div class="todo-row-item complete-status">
+       {{todo.completed ? 'Completed' : 'Not Completed'}}
+     </div>
+
+      <div class="todo-row-item">
+        <button href="" ng-click="todos.deleteTodo(todo);"> Delete Todo</button>
+      </div>
+
+    </li>
+  </ul>
+
+
+</div>
