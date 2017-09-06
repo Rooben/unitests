@@ -1,3 +1,14 @@
-<div class="root">
+<div class="root" ng-controller="RootController">
+  <div>
+    <counter-component initial-count="$ctrl.initialCount"></counter-component>
+  </div>
+
+  <hr/><hr/>
+
+
+  <counter></counter>
+
+  <hr/><hr/>
+
   <to-do-component></to-do-component>
 </div>

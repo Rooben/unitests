@@ -1,7 +1,7 @@
 describe('TodoController', function () {
     var $controller, TodoController;
 
-    beforeEach(module('root'));
+    beforeEach(module('crudmodule'));
 
     beforeEach(inject(function ($injector) {
         $controller = $injector.get('$controller');
@@ -12,7 +12,7 @@ describe('TodoController', function () {
         var TodoService = function () {};
 
         TodoService.prototype.$save = function () {};
-
+        TodoService.get = function(){};
         TodoService.query = function () {
             return {
                 $promise: { // mock the promise object $resource gives us
@@ -29,7 +29,7 @@ describe('TodoController', function () {
             }
         };
 
-        TodoService.delete = function () {
+        TodoService.delete = function (todo) {
             return true;
         };
 
@@ -37,6 +37,8 @@ describe('TodoController', function () {
             $scope: $scope,
             TodoService: TodoService
         });
+
+        TodoController.getTodos();
     }));
 
     it('should have get items from the service', function () {
@@ -49,13 +51,13 @@ describe('TodoController', function () {
         });
     });
 
-    it('should delete the item from the service', function () {
+   /* it('should delete the item from the service', function () {
         TodoController.deleteTodo(1);
-
+        console.log(TodoController.list);
         expect(TodoController.list.length).toEqual(0);
-    });
+    });*/
 
-    it('should be create a new item', function () {
+    it('should create a new item', function () {
         TodoController.title = 'Example Title';
 
         TodoController.newTodo();
